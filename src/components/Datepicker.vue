@@ -338,7 +338,9 @@ export default {
       this.selectedDate = date
       this.setPageDate(date)
       this.$emit('selected', date)
-      this.$emit('input', date)
+      this.$emit('input', typeof this.format === 'function'
+        ? this.format(date)
+        : this.utils.formatDate(new Date(date), this.format, this.translation))
     },
     /**
      * Clear the selected date
